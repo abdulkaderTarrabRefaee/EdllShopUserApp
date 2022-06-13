@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AADLL</string>
+
+
+    <string name="facebook_app_id">737426800715711</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">41e70c4c29ad10d333f0b0a493387292</string>
+
+
+
+
+</resources>

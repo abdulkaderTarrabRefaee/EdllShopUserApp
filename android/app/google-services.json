@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "358329862330",
+    "project_id": "edllshop",
+    "storage_bucket": "edllshop.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358329862330:android:333c55fa486b3bb0c6da83",
+        "android_client_info": {
+          "package_name": "com.matajiri.Edllshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358329862330-cu124cv7k0h4ngsjto4dtg1d1vdud31d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.matajiri.Edllshop",
+            "certificate_hash": "25f14b9295c11c87d290d720868ca8bee7dc664f"
+          }
+        },
+        {
+          "client_id": "358329862330-7moam6tnelotkuqk4320094ro8f8he9s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD86KnwnC-d77DQNQ_qE5XweXK00A_EX3k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358329862330-7moam6tnelotkuqk4320094ro8f8he9s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

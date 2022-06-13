@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>582146404378-4v7trp7ucf0bpk7eck5qeafcl03lnq09.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.582146404378-4v7trp7ucf0bpk7eck5qeafcl03lnq09</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAOxADQilG2PwgW60kWObrS4l3cMyaMCog</string>
+	<key>GCM_SENDER_ID</key>
+	<string>582146404378</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.matajiri.aadllshop</string>
+	<key>PROJECT_ID</key>
+	<string>aadlal-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>aadlal-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:582146404378:ios:ac875f1320d6658bdc61a3</string>
+</dict>
+</plist>
