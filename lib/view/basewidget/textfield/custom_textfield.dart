@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/custom_themes.dart';
+import 'package:edll_user_app/utill/custom_themes.dart';
 
 extension EmailValidator on String {
   bool isValidEmail() {

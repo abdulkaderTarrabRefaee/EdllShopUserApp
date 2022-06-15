@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/helper/network_info.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/splash_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/chat/inbox_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/localization/language_constrants.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/images.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/home/home_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/more/more_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/notification/notification_screen.dart';
-import 'package:flutter_sixvalley_ecommerce/view/screen/order/order_screen.dart';
+import 'package:edll_user_app/helper/network_info.dart';
+import 'package:edll_user_app/provider/splash_provider.dart';
+import 'package:edll_user_app/view/screen/chat/inbox_screen.dart';
+import 'package:edll_user_app/localization/language_constrants.dart';
+import 'package:edll_user_app/utill/images.dart';
+import 'package:edll_user_app/view/screen/home/home_screen.dart';
+import 'package:edll_user_app/view/screen/more/more_screen.dart';
+import 'package:edll_user_app/view/screen/notification/notification_screen.dart';
+import 'package:edll_user_app/view/screen/order/order_screen.dart';
 import 'package:provider/provider.dart';
 
 class DashBoardScreen extends StatefulWidget {

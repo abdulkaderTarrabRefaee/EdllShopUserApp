@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sixvalley_ecommerce/data/model/response/product_model.dart';
-import 'package:flutter_sixvalley_ecommerce/helper/price_converter.dart';
-import 'package:flutter_sixvalley_ecommerce/localization/language_constrants.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/product_details_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/provider/theme_provider.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/color_resources.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/custom_themes.dart';
-import 'package:flutter_sixvalley_ecommerce/utill/dimensions.dart';
-import 'package:flutter_sixvalley_ecommerce/view/basewidget/rating_bar.dart';
+import 'package:edll_user_app/data/model/response/product_model.dart';
+import 'package:edll_user_app/helper/price_converter.dart';
+import 'package:edll_user_app/localization/language_constrants.dart';
+import 'package:edll_user_app/provider/product_details_provider.dart';
+import 'package:edll_user_app/provider/theme_provider.dart';
+import 'package:edll_user_app/utill/color_resources.dart';
+import 'package:edll_user_app/utill/custom_themes.dart';
+import 'package:edll_user_app/utill/dimensions.dart';
+import 'package:edll_user_app/view/basewidget/rating_bar.dart';
 import 'package:provider/provider.dart';
 
 
