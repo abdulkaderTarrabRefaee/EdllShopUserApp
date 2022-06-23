@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../category/all_category_screen.dart';
+import '../../categoryProduct/category_product_screen.dart';
 
 class CategoryView extends StatelessWidget {
   final bool isHomePage;
@@ -54,7 +55,7 @@ class CategoryView extends StatelessWidget {
           //    },
 
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => AllCategoryScreen(  index)));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => CategoryProductScreen(  index)));
               },
 
 

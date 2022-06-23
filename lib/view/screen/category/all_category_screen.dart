@@ -77,64 +77,68 @@ class AllCategoryScreen extends StatelessWidget {
                   ),
                 ),
 
-                Expanded(
+                Container(
 
 
-                    child: ListView.builder(
-                  padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
-                  itemCount: categoryProvider.categoryList[categoryProvider.categorySelectedIndex].subCategories.length+1,
-                  itemBuilder: (context, index) {
+                  child: Expanded(
 
-                    SubCategory _subCategory;
-                    if(index != 0) {
-                      _subCategory = categoryProvider.categoryList[categoryProvider.categorySelectedIndex].subCategories[index-1];
-                    }
-                    if(index == 0) {
-                      return Ink(
-                        color: Theme.of(context).highlightColor,
-                        child: ListTile(
-                          title: Text(getTranslated('all', context), style: titilliumSemiBold, maxLines: 2, overflow: TextOverflow.ellipsis),
-                          trailing: Icon(Icons.navigate_next),
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (_) => BrandAndCategoryProductScreen(
-                              isBrand: false,
-                              id: categoryProvider.categoryList[categoryProvider.categorySelectedIndex].id.toString(),
-                              name: categoryProvider.categoryList[categoryProvider.categorySelectedIndex].name,
-                            )));
-                          },
-                        ),
-                      );
-                    }else if (_subCategory.subSubCategories.length != 0) {
-                      return Ink(
-                        color: Theme.of(context).highlightColor,
-                        child: Theme(
-                          data: Provider.of<ThemeProvider>(context).darkTheme ? ThemeData.dark() : ThemeData.light(),
-                          child: ExpansionTile(
-                            key: Key('${Provider.of<CategoryProvider>(context).categorySelectedIndex}$index'),
-                            title: Text(_subCategory.name, style: titilliumSemiBold.copyWith(color: Theme.of(context).textTheme.bodyText1.color), maxLines: 2, overflow: TextOverflow.ellipsis),
-                            children: _getSubSubCategories(context, _subCategory),
+
+                      child: ListView.builder(
+                    padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
+                    itemCount: categoryProvider.categoryList[categoryProvider.categorySelectedIndex].subCategories.length+1,
+                    itemBuilder: (context, index) {
+
+                      SubCategory _subCategory;
+                      if(index != 0) {
+                        _subCategory = categoryProvider.categoryList[categoryProvider.categorySelectedIndex].subCategories[index-1];
+                      }
+                      if(index == 0) {
+                        return Ink(
+                          color: Theme.of(context).highlightColor,
+                          child: ListTile(
+                            title: Text(getTranslated('all', context), style: titilliumSemiBold, maxLines: 2, overflow: TextOverflow.ellipsis),
+                            trailing: Icon(Icons.navigate_next),
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (_) => BrandAndCategoryProductScreen(
+                                isBrand: false,
+                                id: categoryProvider.categoryList[categoryProvider.categorySelectedIndex].id.toString(),
+                                name: categoryProvider.categoryList[categoryProvider.categorySelectedIndex].name,
+                              )));
+                            },
                           ),
-                        ),
-                      );
-                    } else {
-                      return Ink(
-                        color: Theme.of(context).highlightColor,
-                        child: ListTile(
-                          title: Text(_subCategory.name, style: titilliumSemiBold, maxLines: 2, overflow: TextOverflow.ellipsis),
-                          trailing: Icon(Icons.navigate_next, color: Theme.of(context).textTheme.bodyText1.color),
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (_) => BrandAndCategoryProductScreen(
-                              isBrand: false,
-                              id: _subCategory.id.toString(),
-                              name: _subCategory.name,
-                            )));
-                          },
-                        ),
-                      );
-                    }
+                        );
+                      }else if (_subCategory.subSubCategories.length != 0) {
+                        return Ink(
+                          color: Theme.of(context).highlightColor,
+                          child: Theme(
+                            data: Provider.of<ThemeProvider>(context).darkTheme ? ThemeData.dark() : ThemeData.light(),
+                            child: ExpansionTile(
+                              key: Key('${Provider.of<CategoryProvider>(context).categorySelectedIndex}$index'),
+                              title: Text(_subCategory.name, style: titilliumSemiBold.copyWith(color: Theme.of(context).textTheme.bodyText1.color), maxLines: 2, overflow: TextOverflow.ellipsis),
+                              children: _getSubSubCategories(context, _subCategory),
+                            ),
+                          ),
+                        );
+                      } else {
+                        return Ink(
+                          color: Theme.of(context).highlightColor,
+                          child: ListTile(
+                            title: Text(_subCategory.name, style: titilliumSemiBold, maxLines: 2, overflow: TextOverflow.ellipsis),
+                            trailing: Icon(Icons.navigate_next, color: Theme.of(context).textTheme.bodyText1.color),
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (_) => BrandAndCategoryProductScreen(
+                                isBrand: false,
+                                id: _subCategory.id.toString(),
+                                name: _subCategory.name,
+                              )));
+                            },
+                          ),
+                        );
+                      }
 
-                  },
-                )),
+                    },
+                  )),
+                ),
 
               ]) : Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor)));
             },
