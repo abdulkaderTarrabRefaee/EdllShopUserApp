@@ -55,7 +55,8 @@ class CategoryView extends StatelessWidget {
           //    },
 
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => CategoryProductScreen(  index)));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => CategoryProductScreen(  categoryProvider.categoryList[index].id-1)));
+
               },
 
 

@@ -23,7 +23,8 @@ class BrandAndCategoryProductScreen extends StatelessWidget {
     Provider.of<ProductProvider>(context, listen: false).initBrandOrCategoryProductList(isBrand, id, context);
     return Scaffold(
       backgroundColor: ColorResources.getIconBg(context),
-      body: Consumer<ProductProvider>(
+      body:
+      Consumer<ProductProvider>(
         builder: (context, productProvider, child) {
           return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
 
@@ -70,6 +71,7 @@ class BrandAndCategoryProductScreen extends StatelessWidget {
           ]);
         },
       ),
+
     );
   }
 }

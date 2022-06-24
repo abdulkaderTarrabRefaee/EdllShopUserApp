@@ -8,14 +8,10 @@ class CategoryProvider extends ChangeNotifier {
   final CategoryRepo categoryRepo;
 
   CategoryProvider({@required this.categoryRepo});
-
-
   List<Category> _categoryList = [];
   int _categorySelectedIndex;
-
   List<Category> get categoryList => _categoryList;
   int get categorySelectedIndex => _categorySelectedIndex;
-
   Future<void> getCategoryList(bool reload, BuildContext context) async {
     if (_categoryList.length == 0 || reload) {
       ApiResponse apiResponse = await categoryRepo.getCategoryList();
