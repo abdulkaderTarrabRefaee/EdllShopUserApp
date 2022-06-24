@@ -11,7 +11,6 @@ import 'package:edll_user_app/utill/custom_themes.dart';
 import 'package:edll_user_app/utill/dimensions.dart';
 import 'package:edll_user_app/utill/images.dart';
 import 'package:edll_user_app/view/basewidget/custom_app_bar.dart';
-import 'package:edll_user_app/view/screen/product/brand_and_category_product_screen.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 
@@ -37,8 +36,11 @@ class CategoryProductScreen extends StatelessWidget {
       Column(
         children: [
           CustomAppBar(title: getTranslated('CATEGORY', context)),
-          Expanded(child:
+          Expanded(
+            flex:0,
+              child:
           Consumer<CategoryProvider>(
+
             builder: (context, categoryProvider, child) {
 
 
@@ -69,9 +71,9 @@ class CategoryProductScreen extends StatelessWidget {
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
                             SubCategory _subCategory;
-                            if(index != 0) {
-                              _subCategory = categoryProvider.categoryList[categoryProvider.categorySelectedIndex].subCategories[index+1];
-                            }
+
+
+
                             Category _category =
                                 categoryProvider.categoryList[index];
                             return InkWell(
@@ -184,7 +186,8 @@ class CategoryProductScreen extends StatelessWidget {
                           valueColor: AlwaysStoppedAnimation<Color>(
                               Theme.of(context).primaryColor)));
             },
-          )),
+          )
+          ),
           Expanded(child: Consumer<ProductProvider>(
             builder: (context, productProvider, child) {
 
