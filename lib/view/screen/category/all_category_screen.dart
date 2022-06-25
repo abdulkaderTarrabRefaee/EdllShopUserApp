@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:edll_user_app/data/model/response/category.dart';
 import 'package:edll_user_app/localization/language_constrants.dart';
