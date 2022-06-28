@@ -16,6 +16,7 @@ import '../../../provider/product_provider.dart';
 import '../../basewidget/no_internet_screen.dart';
 import '../../basewidget/product_shimmer.dart';
 import '../../basewidget/product_widget.dart';
+import '../subSubCategory/sub_sub_category.dart';
 
 // ignore: must_be_immutable
 class CategoryProductScreen extends StatelessWidget {
@@ -171,6 +172,12 @@ class CategoryProductScreen extends StatelessWidget {
                                 ],
                               ),
                               onTap: () {
+                              if  (_subCategory.subSubCategories.length != 0)
+                                {
+                                  //go to subsbuCategories screen
+                                  Navigator.push(context, MaterialPageRoute(builder: (_) => SubSubCat(_subCategory.id,_subCategory)));
+                                }
+                              else
                                 Provider.of<ProductProvider>(context, listen: false).initBrandOrCategoryProductList(false, _subCategory.id.toString(), context);
 
                               },
