@@ -16,7 +16,6 @@ import '../../../provider/product_provider.dart';
 import '../../basewidget/no_internet_screen.dart';
 import '../../basewidget/product_shimmer.dart';
 import '../../basewidget/product_widget.dart';
-import '../product/brand_and_category_product_screen.dart';
 
 // ignore: must_be_immutable
 class SubSubCat extends StatelessWidget {
@@ -40,7 +39,7 @@ class SubSubCat extends StatelessWidget {
           Container(
             width: double.infinity,
             margin: EdgeInsets.only(top: 3),
-            height: 220,
+            height: 110,
 
             child: Consumer<CategoryProvider>(
 
@@ -50,7 +49,7 @@ class SubSubCat extends StatelessWidget {
                 return categoryProvider.categoryList.length != 0
                     ? Column(children: [
 
-                      //subsubCategory
+                      //SubSubCategory
                   Container(
                     width: double.infinity,
                     margin: EdgeInsets.only(top: 3),

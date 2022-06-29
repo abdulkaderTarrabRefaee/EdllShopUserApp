@@ -10,9 +10,11 @@ import 'package:edll_user_app/utill/custom_themes.dart';
 import 'package:edll_user_app/utill/dimensions.dart';
 import 'package:edll_user_app/utill/images.dart';
 import 'package:edll_user_app/view/basewidget/custom_app_bar.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 import '../../../provider/product_provider.dart';
+import '../../../utill/app_constants.dart';
 import '../../basewidget/no_internet_screen.dart';
 import '../../basewidget/product_shimmer.dart';
 import '../../basewidget/product_widget.dart';
@@ -20,11 +22,14 @@ import '../subSubCategory/sub_sub_category.dart';
 
 // ignore: must_be_immutable
 class CategoryProductScreen extends StatelessWidget {
+
   int id;
   CategoryProductScreen(this.id);
 
   @override
   Widget build(BuildContext context) {
+
+
     Provider.of<ProductProvider>(context, listen: false).initBrandOrCategoryProductList(false, (this.id+1).toString(), context);
 
     Provider.of<CategoryProvider>(context, listen: false)
@@ -150,24 +155,49 @@ class CategoryProductScreen extends StatelessWidget {
 
 
                               },
-                              child: Row(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
+
                                   Text( categoryProvider.categoryList[ categoryProvider.categorySelectedIndex].name +" " + getTranslated('all', context) ,
                                       style: titilliumSemiBold,
 
                                       overflow: TextOverflow.ellipsis),
+
+
 
                                 ],
                               ),
                             );
                           } else {
                             return InkWell(
-                              child: Row(
+                              child: Column(
                                 children: [
+                                  Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 2,
+                                          color:  Theme.of(context).hintColor),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: FadeInImage.assetNetwork(
+                                        placeholder: Images.placeholder,
+                                        fit: BoxFit.cover,
+                                        image:Provider.of<SplashProvider>(context, listen: false).baseUrls.categoryImageUrl+"/"+_subCategory.subSubCategories[ categoryProvider.categorySelectedIndex].icon,
+                                        imageErrorBuilder: (c, o, s) =>
+                                            Image.asset(Images.placeholder, fit: BoxFit.cover),
+                                      ),
+                                    ),
+                                  ),
                                   Text(_subCategory.name,
                                       style: titilliumSemiBold,
 
                                       overflow: TextOverflow.ellipsis),
+
 
                                 ],
                               ),
