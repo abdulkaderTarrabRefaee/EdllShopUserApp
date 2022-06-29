@@ -187,7 +187,7 @@ class CategoryProductScreen extends StatelessWidget {
                                       child: FadeInImage.assetNetwork(
                                         placeholder: Images.placeholder,
                                         fit: BoxFit.cover,
-                                        image:Provider.of<SplashProvider>(context, listen: false).baseUrls.categoryImageUrl+"/"+_subCategory.subSubCategories[ categoryProvider.categorySelectedIndex].icon,
+                                        image:Provider.of<SplashProvider>(context, listen: false).baseUrls.categoryImageUrl+"/"+_subCategory.icon,
                                         imageErrorBuilder: (c, o, s) =>
                                             Image.asset(Images.placeholder, fit: BoxFit.cover),
                                       ),
