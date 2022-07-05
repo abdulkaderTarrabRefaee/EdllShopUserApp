@@ -9,6 +9,8 @@ import 'package:edll_user_app/utill/images.dart';
 import 'package:edll_user_app/view/screen/product/brand_and_category_product_screen.dart';
 import 'package:edll_user_app/view/screen/product/product_details_screen.dart';
 import 'package:edll_user_app/view/screen/topSeller/top_seller_product_screen.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:provider/provider.dart';
 class FooterBannersView extends StatelessWidget {
   final int index;
@@ -75,12 +77,19 @@ class FooterBannersView extends StatelessWidget {
             decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5))),
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(5)),
-              child: FadeInImage.assetNetwork(
-                placeholder: Images.placeholder, fit: BoxFit.cover,
-                image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
+              child:  CachedNetworkImage(
+                fit:BoxFit.fitWidth ,
+                imageUrl: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
                     '/${footerBannerProvider.footerBannerList[index].photo}',
-                imageErrorBuilder: (c, o, s) => Image.asset(Images.placeholder, fit: BoxFit.cover),
+                placeholder: (BuildContext context, String url) => Container(
+
+                  child:  Image.asset(Images.placeholder, fit: BoxFit.cover),
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.signal_wifi_statusbar_connected_no_internet_4_outlined ,color: Color(0x51000000)),
+
               ),
+
+
             ),
           ),
         ),

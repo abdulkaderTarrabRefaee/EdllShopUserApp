@@ -9,6 +9,8 @@ import 'package:edll_user_app/utill/images.dart';
 import 'package:edll_user_app/view/basewidget/rating_bar.dart';
 import 'package:edll_user_app/view/screen/product/product_details_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 
 class ProductWidget extends StatelessWidget {
   final Product productModel;
@@ -43,13 +45,19 @@ class ProductWidget extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-                child: FadeInImage.assetNetwork(
-                  placeholder: Images.placeholder, fit: BoxFit.cover,
+                child: CachedNetworkImage(
                   height: MediaQuery.of(context).size.width/2.45,
-                  image: '${Provider.of<SplashProvider>(context, listen: false).baseUrls.productThumbnailUrl}/${productModel.thumbnail}',
-                  imageErrorBuilder: (c, o, s) => Image.asset(Images.placeholder_1x1,
-                      fit: BoxFit.cover,height: MediaQuery.of(context).size.width/2.45),
+                  fit:BoxFit.fitWidth ,
+                  imageUrl: '${Provider.of<SplashProvider>(context, listen: false).baseUrls.productThumbnailUrl}/${productModel.thumbnail}',
+                  placeholder: (BuildContext context, String url) => Container(
+
+                    child:  Image.asset(Images.placeholder_1x1,
+                        fit: BoxFit.cover,height: MediaQuery.of(context).size.width/2.45),
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.signal_wifi_statusbar_connected_no_internet_4_outlined ,color: Color(0x51000000)),
+
                 ),
+
               ),
             ),
 

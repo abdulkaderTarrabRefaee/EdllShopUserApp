@@ -8,6 +8,8 @@ import 'package:edll_user_app/utill/images.dart';
 import 'package:edll_user_app/view/screen/product/brand_and_category_product_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 
 class BrandView extends StatelessWidget {
   final bool isHomePage;
@@ -52,12 +54,19 @@ class BrandView extends StatelessWidget {
                                  ),
                             child: ClipRRect(
                               borderRadius: BorderRadius.all(Radius.circular((MediaQuery.of(context).size.width/5))),
-                              child: FadeInImage.assetNetwork(
-                                fit: BoxFit.cover,
-                                placeholder: Images.placeholder,
-                                image: Provider.of<SplashProvider>(context,listen: false).baseUrls.brandImageUrl+'/'+brandProvider.brandList[index].image,
-                                imageErrorBuilder: (c, o, s) => Image.asset(Images.placeholder,  fit: BoxFit.cover,),
+                              child:  CachedNetworkImage(
+                                fit:BoxFit.fitWidth ,
+                                imageUrl: Provider.of<SplashProvider>(context,listen: false).baseUrls.brandImageUrl+'/'+brandProvider.brandList[index].image,
+                                placeholder: (BuildContext context, String url) => Container(
+
+                                  child:  Image.asset(Images.placeholder, fit: BoxFit.cover),
+                                ),
+                                errorWidget: (context, url, error) => const Icon(Icons.signal_wifi_statusbar_connected_no_internet_4_outlined ,color: Color(0x51000000)),
+
                               ),
+
+
+
                             ),
                           ),
                           SizedBox(
@@ -117,12 +126,17 @@ class BrandView extends StatelessWidget {
                           boxShadow: [BoxShadow(color: Colors.grey.withOpacity(0.15), blurRadius: 5, spreadRadius: 1)]
                       ),
                       child: ClipOval(
-                        child: FadeInImage.assetNetwork(
-                          fit: BoxFit.cover,
-                          placeholder: Images.placeholder,
-                          image: Provider.of<SplashProvider>(context,listen: false).baseUrls.brandImageUrl+'/'+brandProvider.brandList[index].image,
-                          imageErrorBuilder: (c, o, s) => Image.asset(Images.placeholder,  fit: BoxFit.cover,),
+                        child: CachedNetworkImage(
+                          fit:BoxFit.cover ,
+                          imageUrl: Provider.of<SplashProvider>(context,listen: false).baseUrls.brandImageUrl+'/'+brandProvider.brandList[index].image,
+                          placeholder: (BuildContext context, String url) => Container(
+
+                            child:  Image.asset(Images.placeholder, fit: BoxFit.cover),
+                          ),
+                          errorWidget: (context, url, error) => const Icon(Icons.signal_wifi_statusbar_connected_no_internet_4_outlined ,color: Color(0x51000000)),
+
                         ),
+
                       ),
                     ),
                   ),

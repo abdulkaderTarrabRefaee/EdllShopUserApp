@@ -13,6 +13,8 @@ import 'package:edll_user_app/view/basewidget/custom_app_bar.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 import '../../../provider/product_provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 import '../../basewidget/no_internet_screen.dart';
 import '../../basewidget/product_shimmer.dart';
 import '../../basewidget/product_widget.dart';
@@ -27,8 +29,8 @@ class SubSubCat extends StatelessWidget {
   Widget build(BuildContext context) {
     Provider.of<ProductProvider>(context, listen: false).initBrandOrCategoryProductList(false, (this.id).toString(), context);
 
-    Provider.of<CategoryProvider>(context, listen: false)
-        .changeSelectedIndex(this.id);
+
+
 
     return Scaffold(
       backgroundColor: ColorResources.getIconBg(context),
@@ -85,12 +87,36 @@ class SubSubCat extends StatelessWidget {
                               Provider.of<ProductProvider>(context, listen: false).initBrandOrCategoryProductList(false, (categoryProvider.categorySelectedIndex).toString(), context);
 
                             },
-                            child: Row(
+                            child: Column(
                               children: [
+                                Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 2,
+                                        color:  Theme.of(context).hintColor),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: CachedNetworkImage(
+                                      fit:BoxFit.fitWidth ,
+                                      imageUrl: Provider.of<SplashProvider>(context, listen: false).baseUrls.categoryImageUrl+"/"+_subCategory.icon,
+                                      placeholder: (BuildContext context, String url) => Container(
+
+                                        child:  Image.asset(Images.placeholder, fit: BoxFit.cover),
+                                      ),
+                                      errorWidget: (context, url, error) => const Icon(Icons.signal_wifi_statusbar_connected_no_internet_4_outlined ,color: Color(0x51000000)),
+
+                                    ),
+                                  ),
+                                ),
                                 Text( _subCategory.name +" " + getTranslated('all', context) ,
                                     style: titilliumSemiBold,
 
                                     overflow: TextOverflow.ellipsis),
+
 
                               ],
                             ),
@@ -104,8 +130,32 @@ class SubSubCat extends StatelessWidget {
 
 
                             },
-                            child: Row(
+                            child: Column(
                               children: [
+                                Container(
+
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 2,
+                                        color:  Theme.of(context).hintColor),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child:
+                                   ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                     child: CachedNetworkImage(
+                                    fit:BoxFit.cover ,
+                                    imageUrl: Provider.of<SplashProvider>(context, listen: false).baseUrls.categoryImageUrl+"/"+_subCategory.subSubCategories[ index].icon,
+                                    placeholder: (BuildContext context, String url) => Container(
+
+                                      child:  Image.asset(Images.placeholder, fit: BoxFit.cover),
+                                    ),
+                                    errorWidget: (context, url, error) => const Icon(Icons.signal_wifi_statusbar_connected_no_internet_4_outlined ,color: Color(0x51000000)),
+
+                                  ),
+                                ),),
                                 Text( _subCategory.subSubCategories[ index].name ,
                                     style: titilliumSemiBold,
 
@@ -198,14 +248,19 @@ class CategoryItem extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: FadeInImage.assetNetwork(
-                placeholder: Images.placeholder,
-                fit: BoxFit.cover,
-                image:
-                '${Provider.of<SplashProvider>(context, listen: false).baseUrls.categoryImageUrl}/$icon',
-                imageErrorBuilder: (c, o, s) =>
-                    Image.asset(Images.placeholder, fit: BoxFit.cover),
+              child:  CachedNetworkImage(
+                fit:BoxFit.fitWidth ,
+                imageUrl:'${Provider.of<SplashProvider>(context, listen: false).baseUrls.categoryImageUrl}/$icon',
+                placeholder: (BuildContext context, String url) => Container(
+
+                  child:  Image.asset(Images.placeholder, fit: BoxFit.cover),
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.signal_wifi_statusbar_connected_no_internet_4_outlined ,color: Color(0x51000000)),
+
               ),
+
+
+
             ),
           ),
           Padding(

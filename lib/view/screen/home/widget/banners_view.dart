@@ -13,6 +13,7 @@ import 'package:edll_user_app/view/screen/product/product_details_screen.dart';
 import 'package:edll_user_app/view/screen/topSeller/top_seller_product_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 class BannersView extends StatelessWidget {
 
   _clickBannerRedirect(BuildContext context, int id, Product product,  String type){
@@ -91,11 +92,19 @@ class BannersView extends StatelessWidget {
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10),
-                            child: FadeInImage.assetNetwork(
-                              placeholder: Images.placeholder, fit: BoxFit.cover,
-                              image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
+                            child: CachedNetworkImage(
+                              fit:BoxFit.fitWidth ,
+                              imageUrl: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
                                   '/${bannerProvider.mainBannerList[index].photo}',
-                              imageErrorBuilder: (c, o, s) => Image.asset(Images.placeholder_3x1, fit: BoxFit.cover),
+                              placeholder: (BuildContext context, String url) => Container(
+
+                                 child:  Image.asset(Images.placeholder, fit: BoxFit.cover),
+                              ),
+                              errorWidget: (context, url, error) => const Icon(Icons.signal_wifi_statusbar_connected_no_internet_4_outlined ,color: Color(0x51000000)),
+
+
+
+
                             ),
                           ),
                         ),

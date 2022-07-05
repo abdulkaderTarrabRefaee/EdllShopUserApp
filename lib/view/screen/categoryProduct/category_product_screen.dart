@@ -10,11 +10,10 @@ import 'package:edll_user_app/utill/custom_themes.dart';
 import 'package:edll_user_app/utill/dimensions.dart';
 import 'package:edll_user_app/utill/images.dart';
 import 'package:edll_user_app/view/basewidget/custom_app_bar.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 import '../../../provider/product_provider.dart';
-import '../../../utill/app_constants.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../basewidget/no_internet_screen.dart';
 import '../../basewidget/product_shimmer.dart';
 import '../../basewidget/product_widget.dart';
@@ -28,6 +27,7 @@ class CategoryProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
 
 
     Provider.of<ProductProvider>(context, listen: false).initBrandOrCategoryProductList(false, (this.id+1).toString(), context);
@@ -46,7 +46,9 @@ class CategoryProductScreen extends StatelessWidget {
             margin: EdgeInsets.only(top: 3),
             height: 220,
 
-            child: Consumer<CategoryProvider>(
+            child:
+
+            Consumer<CategoryProvider>(
 
               builder: (context, categoryProvider, child) {
 
@@ -158,6 +160,31 @@ class CategoryProductScreen extends StatelessWidget {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
+                                  Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 2,
+                                          color:  Theme.of(context).hintColor),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child:
+
+                                      CachedNetworkImage(
+                                        fit:BoxFit.fitWidth ,
+                                        imageUrl: Provider.of<SplashProvider>(context, listen: false).baseUrls.categoryImageUrl+"/"+categoryProvider.categoryList[ categoryProvider.categorySelectedIndex].icon,
+                                        placeholder: (BuildContext context, String url) => Container(
+
+                                          child:  Image.asset(Images.placeholder, fit: BoxFit.cover),
+                                        ),
+                                        errorWidget: (context, url, error) => const Icon(Icons.signal_wifi_statusbar_connected_no_internet_4_outlined ,color: Color(0x51000000)),
+
+                                      ),
+                                    ),
+                                  ),
 
                                   Text( categoryProvider.categoryList[ categoryProvider.categorySelectedIndex].name +" " + getTranslated('all', context) ,
                                       style: titilliumSemiBold,
@@ -184,13 +211,17 @@ class CategoryProductScreen extends StatelessWidget {
                                     ),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(10),
-                                      child: FadeInImage.assetNetwork(
-                                        placeholder: Images.placeholder,
-                                        fit: BoxFit.cover,
-                                        image:Provider.of<SplashProvider>(context, listen: false).baseUrls.categoryImageUrl+"/"+_subCategory.icon,
-                                        imageErrorBuilder: (c, o, s) =>
-                                            Image.asset(Images.placeholder, fit: BoxFit.cover),
+                                      child: CachedNetworkImage(
+                                        fit:BoxFit.cover ,
+                                        imageUrl: Provider.of<SplashProvider>(context, listen: false).baseUrls.categoryImageUrl+"/"+_subCategory.icon,
+                                        placeholder: (BuildContext context, String url) => Container(
+
+                                          child:  Image.asset(Images.placeholder, fit: BoxFit.cover),
+                                        ),
+                                        errorWidget: (context, url, error) => const Icon(Icons.signal_wifi_statusbar_connected_no_internet_4_outlined ,color: Color(0x51000000)),
                                       ),
+
+
                                     ),
                                   ),
                                   Text(_subCategory.name,
@@ -296,16 +327,21 @@ class CategoryItem extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: FadeInImage.assetNetwork(
-                placeholder: Images.placeholder,
-                fit: BoxFit.cover,
-                image:
-                    '${Provider.of<SplashProvider>(context, listen: false).baseUrls.categoryImageUrl}/$icon',
-                imageErrorBuilder: (c, o, s) =>
-                    Image.asset(Images.placeholder, fit: BoxFit.cover),
+              child: CachedNetworkImage(
+                fadeInDuration: Duration.zero,
+                fit:BoxFit.fitWidth ,
+                imageUrl: '${Provider.of<SplashProvider>(context, listen: false).baseUrls.categoryImageUrl}/$icon',
+                placeholder: (BuildContext context, String url) => Container(
+
+                  child:  Image.asset(Images.placeholder, fit: BoxFit.cover),
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.signal_wifi_statusbar_connected_no_internet_4_outlined ,color: Color(0x51000000)),
+
               ),
             ),
           ),
+
+
           Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: Dimensions.PADDING_SIZE_EXTRA_SMALL),
