@@ -7,13 +7,9 @@ import 'package:edll_user_app/utill/color_resources.dart';
 import 'package:edll_user_app/utill/custom_themes.dart';
 import 'package:edll_user_app/utill/dimensions.dart';
 import 'package:edll_user_app/utill/images.dart';
-import 'package:edll_user_app/view/screen/product/brand_and_category_product_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-
-
-import '../../category/all_category_screen.dart';
 import '../../categoryProduct/category_product_screen.dart';
 
 class CategoryView extends StatelessWidget {
@@ -30,10 +26,10 @@ class CategoryView extends StatelessWidget {
         return categoryProvider.categoryList.length != 0 ?
         GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 15,
-            mainAxisSpacing: 10,
-            childAspectRatio: (1/1.3),
+            crossAxisCount: 5,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 20,
+            childAspectRatio: (1/1.7),
           ),
           itemCount: isHomePage
               ? categoryProvider.categoryList.length > 8
@@ -94,7 +90,7 @@ class CategoryView extends StatelessWidget {
                       textAlign: TextAlign.center,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: titilliumRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE,
+                      style: titilliumRegular.copyWith(fontSize: Dimensions.FONT_SIZE_SMALL-2,
                           color: ColorResources.getTextTitle(context)),
                     ),
                   ),

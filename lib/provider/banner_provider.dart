@@ -16,13 +16,11 @@ class BannerProvider extends ChangeNotifier {
   List<BannerModel> _mainSectionBannerList;
   Product _product;
   int _currentIndex;
-
   List<BannerModel> get mainBannerList => _mainBannerList;
   List<BannerModel> get footerBannerList => _footerBannerList;
   List<BannerModel> get mainSectionBannerList => _mainSectionBannerList;
   Product get product => _product;
   int get currentIndex => _currentIndex;
-
   Future<void> getBannerList(bool reload, BuildContext context) async {
     if (_mainBannerList == null || reload) {
       ApiResponse apiResponse = await bannerRepo.getBannerList();

@@ -9,6 +9,8 @@ class BannerModel {
   String updatedAt;
   String url;
   String resourceType;
+  String lang;
+
   int resourceId;
   Product product;
 
@@ -22,7 +24,8 @@ class BannerModel {
         this.url,
         this.resourceType,
         this.resourceId,
-        this.product
+        this.product,
+        this.lang
       });
 
   BannerModel.fromJson(Map<String, dynamic> json) {
@@ -35,6 +38,7 @@ class BannerModel {
     url = json['url'];
     resourceType = json['resource_type'];
     resourceId = json['resource_id'];
+    lang=json['lang'];
     product = json['product'] != null && json['banner_type']=='product'? new Product.fromJson(json['product']) : null;
   }
 
@@ -49,6 +53,7 @@ class BannerModel {
     data['url'] = this.url;
     data['resource_type'] = this.resourceType;
     data['resource_id'] = this.resourceId;
+    data['lang']=this.lang;
     if (this.product != null) {
       data['product'] = this.product.toJson();
     }

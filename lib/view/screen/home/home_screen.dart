@@ -43,6 +43,8 @@ import 'package:edll_user_app/view/screen/search/search_screen.dart';
 import 'package:edll_user_app/view/screen/topSeller/all_top_seller_screen.dart';
 import 'package:provider/provider.dart';
 
+import '../../../provider/localization_provider.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -53,7 +55,9 @@ class _HomePageState extends State<HomePage> {
   final ScrollController _scrollController = ScrollController();
 
   Future<void> _loadData(BuildContext context, bool reload) async {
-     Provider.of<BannerProvider>(context, listen: false).getBannerList(reload, context);
+    Provider.of<LocalizationProvider>(context, listen: false);
+
+    Provider.of<BannerProvider>(context, listen: false).getBannerList(reload, context);
      Provider.of<BannerProvider>(context, listen: false).getFooterBannerList(context);
      Provider.of<BannerProvider>(context, listen: false).getMainSectionBanner(context);
      Provider.of<CategoryProvider>(context, listen: false).getCategoryList(reload, context);
@@ -71,11 +75,15 @@ class _HomePageState extends State<HomePage> {
   void passData(int index, String title) {
     index = index;
     title = title;
-  }
 
+  }
+int lang =0;
   bool singleVendor = false;
   @override
   void initState() {
+    lang=    Provider.of<LocalizationProvider>(context, listen: false).languageIndex;
+    print("lang is "+lang.toString());
+
     super.initState();
 
     singleVendor = Provider.of<SplashProvider>(context, listen: false).configModel.businessMode == "single";
@@ -278,7 +286,14 @@ class _HomePageState extends State<HomePage> {
                           }),
 
 
-
+                          //footer banner
+                          Consumer<BannerProvider>(builder: (context, footerBannerProvider, child){
+                            return footerBannerProvider.footerBannerList != null && footerBannerProvider.footerBannerList.length > 0?
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: Dimensions.HOME_PAGE_PADDING),
+                              child: FooterBannersView(index: 1,),
+                            ):SizedBox();
+                          }),
 
 
                           // Featured Products
