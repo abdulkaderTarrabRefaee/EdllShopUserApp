@@ -282,6 +282,9 @@ class _HomePageState extends State<HomePage> {
                                 bottom: Dimensions.HOME_PAGE_PADDING),
                             child: CategoryView(isHomePage: true),
                           ),
+
+
+
                           //mainSection banner
                           Consumer<BannerProvider>(
                               builder: (context, footerBannerProvider, child) {
@@ -301,6 +304,7 @@ class _HomePageState extends State<HomePage> {
                                                   .PADDING_SIZE_SMALL),
                                           physics: BouncingScrollPhysics(),
                                           crossAxisCount: 2,
+                                          crossAxisSpacing: 0,
                                           mainAxisSpacing: 10,
                                           itemCount: footerBannerProvider
                                               .mainSectionBannerList.length,

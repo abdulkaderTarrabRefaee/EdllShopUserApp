@@ -10,6 +10,9 @@ import 'package:edll_user_app/view/screen/product/brand_and_category_product_scr
 import 'package:edll_user_app/view/screen/product/product_details_screen.dart';
 import 'package:edll_user_app/view/screen/topSeller/top_seller_product_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
+import '../../categoryProduct/category_product_screen.dart';
 class MainSectionBannersView extends StatelessWidget {
   final int index;
   const MainSectionBannersView({Key key, this.index}) : super(key: key);
@@ -23,11 +26,7 @@ class MainSectionBannersView extends StatelessWidget {
 
     if(type == 'category'){
       if(Provider.of<CategoryProvider>(context, listen: false).categoryList[cIndex].name != null){
-        Navigator.push(context, MaterialPageRoute(builder: (_) => BrandAndCategoryProductScreen(
-          isBrand: false,
-          id: id.toString(),
-          name: '${Provider.of<CategoryProvider>(context, listen: false).categoryList[cIndex].name}',
-        )));
+        Navigator.push(context, MaterialPageRoute(builder: (_) => CategoryProductScreen(cIndex)));
       }
 
     }else if(type == 'product'){
@@ -64,8 +63,8 @@ class MainSectionBannersView extends StatelessWidget {
 
             return InkWell(
               onTap: () {
-                Provider.of<BannerProvider>(context, listen: false).getProductDetails(context, footerBannerProvider.mainBannerList[index].resourceId.toString());
-                _clickBannerRedirect(context, footerBannerProvider.mainBannerList[index].resourceType=='product'?footerBannerProvider.mainBannerList[index].product.id :footerBannerProvider.mainBannerList[index].resourceId,footerBannerProvider.mainBannerList[index].resourceType =='product'?footerBannerProvider.mainBannerList[index].product : null, footerBannerProvider.mainBannerList[index].resourceType);
+                Provider.of<BannerProvider>(context, listen: false).getProductDetails(context, footerBannerProvider.mainSectionBannerList[index].resourceId.toString());
+                _clickBannerRedirect(context, footerBannerProvider.mainSectionBannerList[index].resourceType=='product'?footerBannerProvider.mainSectionBannerList[index].product.id :footerBannerProvider.mainSectionBannerList[index].resourceId,footerBannerProvider.mainSectionBannerList[index].resourceType =='product'?footerBannerProvider.mainSectionBannerList[index].product : null, footerBannerProvider.mainSectionBannerList[index].resourceType);
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 2.0),
@@ -75,11 +74,16 @@ class MainSectionBannersView extends StatelessWidget {
                   decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5))),
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
-                    child: FadeInImage.assetNetwork(
-                      placeholder: Images.placeholder, fit: BoxFit.cover,
-                      image: '${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
+                    child: CachedNetworkImage(
+                      fit:BoxFit.fitWidth ,
+                      imageUrl:'${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'
                           '/${footerBannerProvider.mainSectionBannerList[index].photo}',
-                      imageErrorBuilder: (c, o, s) => Image.asset(Images.placeholder, fit: BoxFit.cover),
+                      placeholder: (BuildContext context, String url) => Container(
+
+                        child:  Image.asset(Images.placeholder, fit: BoxFit.cover),
+                      ),
+                      errorWidget: (context, url, error) => const Icon(Icons.signal_wifi_statusbar_connected_no_internet_4_outlined ,color: Color(0x51000000)),
+
                     ),
                   ),
                 ),
@@ -94,4 +98,7 @@ class MainSectionBannersView extends StatelessWidget {
 
 
 }
+
+
+
 
