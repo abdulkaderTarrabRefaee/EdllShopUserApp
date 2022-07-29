@@ -73,7 +73,7 @@ class MainSectionBannersView extends StatelessWidget {
                   height: MediaQuery.of(context).size.width/4.1,
                   decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5))),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    borderRadius: BorderRadius.all(Radius.circular(0)),
                     child: CachedNetworkImage(
                       fit:BoxFit.fitWidth ,
                       imageUrl:'${Provider.of<SplashProvider>(context,listen: false).baseUrls.bannerImageUrl}'

@@ -37,10 +37,8 @@ import 'package:edll_user_app/view/screen/home/widget/main_section_banner.dart';
 import 'package:edll_user_app/view/screen/home/widget/products_view.dart';
 import 'package:edll_user_app/view/screen/flashdeal/flash_deal_screen.dart';
 import 'package:edll_user_app/view/screen/home/widget/recommended_product_view.dart';
-import 'package:edll_user_app/view/screen/home/widget/top_seller_view.dart';
 import 'package:edll_user_app/view/screen/product/view_all_product_screen.dart';
 import 'package:edll_user_app/view/screen/search/search_screen.dart';
-import 'package:edll_user_app/view/screen/topSeller/all_top_seller_screen.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 
@@ -251,471 +249,470 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ))),
 
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(
-                          Dimensions.HOME_PAGE_PADDING,
-                          Dimensions.PADDING_SIZE_SMALL,
-                          Dimensions.PADDING_SIZE_DEFAULT,
-                          Dimensions.PADDING_SIZE_SMALL),
-                      child: Column(
-                        children: [
-                          BannersView(),
-                          SizedBox(height: Dimensions.HOME_PAGE_PADDING),
+                  //remove padding
+                  // Padding(
+                  //   padding: EdgeInsets.fromLTRB(
+                  //       Dimensions.HOME_PAGE_PADDING,
+                  //       Dimensions.PADDING_SIZE_SMALL,
+                  //       Dimensions.PADDING_SIZE_DEFAULT,
+                  //       Dimensions.PADDING_SIZE_SMALL),
 
-                          // Category
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal:
-                                    Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL,
-                                vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                            child: TitleRow(
-                                title: getTranslated('CATEGORY', context),
-                                onTap: () => Navigator.push(
+                  SliverToBoxAdapter(
+                    child: Column(
+                      children: [
+                        BannersView(),
+                        SizedBox(height: Dimensions.HOME_PAGE_PADDING),
+                        //remove circule cat
+                        // Category
+                        // Padding(
+                        //   padding: const EdgeInsets.symmetric(
+                        //       horizontal:
+                        //           Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL,
+                        //       vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                        //   child: TitleRow(
+                        //       title: getTranslated('CATEGORY', context),
+                        //       onTap: () => Navigator.push(
+                        //           context,
+                        //           MaterialPageRoute(
+                        //               builder: (_) => AllCategoryScreen(0)))),
+                        // ),
+                        // SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(
+                        //       bottom: Dimensions.HOME_PAGE_PADDING),
+                        //   child: CategoryView(isHomePage: true),
+                        // ),
+
+                        Consumer<FlashDealProvider>(
+                          builder: (context, flashDeal, child) {
+                            return (flashDeal.flashDeal != null &&
+                                flashDeal.flashDealList != null &&
+                                flashDeal.flashDealList.length > 0)
+                                ? TitleRow(
+                              title:
+                              getTranslated('flash_deal', context),
+                              eventDuration: flashDeal.flashDeal != null
+                                  ? flashDeal.duration
+                                  : null,
+                              onTap: () {
+                                Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (_) => AllCategoryScreen(0)))),
-                          ),
-                          SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                bottom: Dimensions.HOME_PAGE_PADDING),
-                            child: CategoryView(isHomePage: true),
-                          ),
+                                        builder: (_) =>
+                                            FlashDealScreen()));
+                              },
+                              isFlash: true,
+                            )
+                                : SizedBox.shrink();
+                          },
+                        ),
 
-
-
-                          //mainSection banner
-                          Consumer<BannerProvider>(
-                              builder: (context, footerBannerProvider, child) {
-                                return footerBannerProvider.mainSectionBannerList !=
-                                    null &&
-                                    footerBannerProvider
-                                        .mainSectionBannerList.length >
-                                        0
-                                    ? Padding(
-                                    padding: const EdgeInsets.only(
-                                        bottom: Dimensions.HOME_PAGE_PADDING),
-                                    child: Column(
-                                      children: [
-                                        StaggeredGridView.countBuilder(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: Dimensions
-                                                  .PADDING_SIZE_SMALL),
-                                          physics: BouncingScrollPhysics(),
-                                          crossAxisCount: 2,
-                                          crossAxisSpacing: 0,
-                                          mainAxisSpacing: 10,
-                                          itemCount: footerBannerProvider
-                                              .mainSectionBannerList.length,
-                                          shrinkWrap: true,
-                                          staggeredTileBuilder: (int index) =>
-                                              StaggeredTile.fit(2),
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            return MainSectionBannersView(
-                                              index: index,
-                                            );
-                                          },
-                                        ),
-                                      ],
-                                    ))
-                                    : SizedBox();
-                              }),
-                          // Mega Deal
-                          Consumer<FlashDealProvider>(
-                            builder: (context, flashDeal, child) {
-                              return (flashDeal.flashDeal != null &&
-                                      flashDeal.flashDealList != null &&
-                                      flashDeal.flashDealList.length > 0)
-                                  ? TitleRow(
-                                      title:
-                                          getTranslated('flash_deal', context),
-                                      eventDuration: flashDeal.flashDeal != null
-                                          ? flashDeal.duration
-                                          : null,
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) =>
-                                                    FlashDealScreen()));
-                                      },
-                                      isFlash: true,
-                                    )
-                                  : SizedBox.shrink();
-                            },
-                          ),
-                          SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                          Consumer<FlashDealProvider>(
-                            builder: (context, megaDeal, child) {
-                              return (megaDeal.flashDeal != null &&
-                                      megaDeal.flashDealList != null &&
-                                      megaDeal.flashDealList.length > 0)
-                                  ? Container(
-                                      height:
-                                          MediaQuery.of(context).size.width *
-                                              1.09,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            bottom:
-                                                Dimensions.HOME_PAGE_PADDING),
-                                        child: FlashDealsView(),
-                                      ))
-                                  : SizedBox.shrink();
-                            },
-                          ),
-
-                          // Brand
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: Dimensions.PADDING_SIZE_EXTRA_SMALL,
-                                right: Dimensions.PADDING_SIZE_EXTRA_SMALL,
-                                bottom: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                            child: TitleRow(
-                                title: getTranslated('brand', context),
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (_) => AllBrandScreen()));
-                                }),
-                          ),
-                          SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                          BrandView(isHomePage: true),
-
-                          //top seller
-                          singleVendor
-                              ? SizedBox()
-                              : TitleRow(
-                                  title: getTranslated('top_seller', context),
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => AllTopSellerScreen(
-                                                  topSeller: null,
-                                                )));
-                                  },
-                                ),
-                          singleVendor
-                              ? SizedBox(height: 0)
-                              : SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                          singleVendor
-                              ? SizedBox()
-                              : Padding(
+                        //mainSection banner
+                        Consumer<BannerProvider>(
+                            builder: (context, footerBannerProvider, child) {
+                              return footerBannerProvider.mainSectionBannerList !=
+                                  null &&
+                                  footerBannerProvider
+                                      .mainSectionBannerList.length >
+                                      0
+                                  ? Padding(
                                   padding: const EdgeInsets.only(
                                       bottom: Dimensions.HOME_PAGE_PADDING),
-                                  child: TopSellerView(isHomePage: true),
-                                ),
+                                  child: Column(
+                                    children: [
+                                      StaggeredGridView.countBuilder(
 
+                                        physics: BouncingScrollPhysics(),
+                                        crossAxisCount: 2,
+                                        crossAxisSpacing: 0,
+                                        mainAxisSpacing: 0,
+                                        itemCount: footerBannerProvider
+                                            .mainSectionBannerList.length,
+                                        shrinkWrap: true,
+                                        staggeredTileBuilder: (int index) =>
+                                            StaggeredTile.fit(2),
+                                        itemBuilder: (BuildContext context,
+                                            int index) {
+                                          return MainSectionBannersView(
+                                            index: index,
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ))
+                                  : SizedBox();
+                            }),
+                        // Mega Deal
 
-
-                          // Featured Products
-                          Consumer<ProductProvider>(
-                              builder: (context, featured, _) {
-                            return featured.featuredProductList != null &&
-                                    featured.featuredProductList.length > 0
-                                ? Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal:
-                                            Dimensions.PADDING_SIZE_EXTRA_SMALL,
-                                        vertical: Dimensions
-                                            .PADDING_SIZE_EXTRA_SMALL),
+                        SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                        Consumer<FlashDealProvider>(
+                          builder: (context, megaDeal, child) {
+                            return (megaDeal.flashDeal != null &&
+                                    megaDeal.flashDealList != null &&
+                                    megaDeal.flashDealList.length > 0)
+                                ? Container(
+                                    height:
+                                        MediaQuery.of(context).size.width *
+                                            1.09,
                                     child: Padding(
                                       padding: const EdgeInsets.only(
                                           bottom:
-                                              Dimensions.PADDING_SIZE_SMALL),
-                                      child: TitleRow(
-                                          title: getTranslated(
-                                              'featured_products', context),
-                                          onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (_) => AllProductScreen(
-                                                        productType: ProductType
-                                                            .FEATURED_PRODUCT)));
-                                          }),
-                                    ),
-                                  )
-                                : SizedBox();
-                          }),
+                                              Dimensions.HOME_PAGE_PADDING),
+                                      child: FlashDealsView(),
+                                    ))
+                                : SizedBox.shrink();
+                          },
+                        ),
 
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                bottom: Dimensions.HOME_PAGE_PADDING),
-                            child: FeaturedProductView(
-                              scrollController: _scrollController,
-                              isHome: true,
-                            ),
+                        // Hide Brand
+                        // Padding(
+                        //   padding: const EdgeInsets.only(
+                        //       left: Dimensions.PADDING_SIZE_EXTRA_SMALL,
+                        //       right: Dimensions.PADDING_SIZE_EXTRA_SMALL,
+                        //       bottom: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                        //   child: TitleRow(
+                        //       title: getTranslated('brand', context),
+                        //       onTap: () {
+                        //         Navigator.push(
+                        //             context,
+                        //             MaterialPageRoute(
+                        //                 builder: (_) => AllBrandScreen()));
+                        //       }),
+                        // ),
+                        // SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                        // BrandView(isHomePage: true),
+                        //remove commend to view seller
+                        //top seller
+
+                        //
+                        // singleVendor
+                        //     ? SizedBox()
+                        //     : TitleRow(
+                        //         title: getTranslated('top_seller', context),
+                        //         onTap: () {
+                        //           Navigator.push(
+                        //               context,
+                        //               MaterialPageRoute(
+                        //                   builder: (_) => AllTopSellerScreen(
+                        //                         topSeller: null,
+                        //                       )));
+                        //         },
+                        //       ),
+                        // singleVendor
+                        //     ? SizedBox(height: 0)
+                        //     : SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                        // singleVendor
+                        //     ? SizedBox()
+                        //     : Padding(
+                        //         padding: const EdgeInsets.only(
+                        //             bottom: Dimensions.HOME_PAGE_PADDING),
+                        //         child: TopSellerView(isHomePage: true),
+                        //       ),
+                        //
+
+
+                        // Featured Products
+                        Consumer<ProductProvider>(
+                            builder: (context, featured, _) {
+                          return featured.featuredProductList != null &&
+                                  featured.featuredProductList.length > 0
+                              ? Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal:
+                                          Dimensions.PADDING_SIZE_EXTRA_SMALL,
+                                      vertical: Dimensions
+                                          .PADDING_SIZE_EXTRA_SMALL),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        bottom:
+                                            Dimensions.PADDING_SIZE_SMALL),
+                                    child: TitleRow(
+                                        title: getTranslated(
+                                            'featured_products', context),
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (_) => AllProductScreen(
+                                                      productType: ProductType
+                                                          .FEATURED_PRODUCT)));
+                                        }),
+                                  ),
+                                )
+                              : SizedBox();
+                        }),
+
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              bottom: Dimensions.HOME_PAGE_PADDING),
+                          child: FeaturedProductView(
+                            scrollController: _scrollController,
+                            isHome: true,
                           ),
+                        ),
 
-                          // Featured Deal
-                          Consumer<FeaturedDealProvider>(
-                            builder: (context, featuredDealProvider, child) {
-                              return featuredDealProvider.featuredDealList ==
-                                      null
-                                  ? TitleRow(
-                                      title: getTranslated(
-                                          'featured_deals', context),
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (_) =>
-                                                    FeaturedDealScreen()));
-                                      })
-                                  : (featuredDealProvider.featuredDealList !=
-                                              null &&
-                                          featuredDealProvider
-                                                  .featuredDealList.length >
-                                              0)
-                                      ? Padding(
+                        // Featured Deal
+                        Consumer<FeaturedDealProvider>(
+                          builder: (context, featuredDealProvider, child) {
+                            return featuredDealProvider.featuredDealList ==
+                                    null
+                                ? TitleRow(
+                                    title: getTranslated(
+                                        'featured_deals', context),
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) =>
+                                                  FeaturedDealScreen()));
+                                    })
+                                : (featuredDealProvider.featuredDealList !=
+                                            null &&
+                                        featuredDealProvider
+                                                .featuredDealList.length >
+                                            0)
+                                    ? Padding(
+                                        padding: const EdgeInsets.only(
+                                            bottom: Dimensions
+                                                .PADDING_SIZE_SMALL),
+                                        child: TitleRow(
+                                            title: getTranslated(
+                                                'featured_deals', context),
+                                            onTap: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (_) =>
+                                                          FeaturedDealScreen()));
+                                            }),
+                                      )
+                                    : SizedBox.shrink();
+                          },
+                        ),
+
+                        Consumer<FeaturedDealProvider>(
+                          builder: (context, featuredDeal, child) {
+                            return featuredDeal.featuredDealList == null &&
+                                    featuredDeal.featuredDealList.length > 0
+                                ? Container(
+                                    height: 150, child: FeaturedDealsView())
+                                : (featuredDeal.featuredDealList != null &&
+                                        featuredDeal.featuredDealList.length >
+                                            0)
+                                    ? Container(
+                                        height: featuredDeal
+                                                    .featuredDealList.length >
+                                                4
+                                            ? 120 * 4.0
+                                            : 120 *
+                                                (double.parse(featuredDeal
+                                                    .featuredDealList.length
+                                                    .toString())),
+                                        child: Padding(
                                           padding: const EdgeInsets.only(
                                               bottom: Dimensions
-                                                  .PADDING_SIZE_SMALL),
-                                          child: TitleRow(
-                                              title: getTranslated(
-                                                  'featured_deals', context),
-                                              onTap: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (_) =>
-                                                            FeaturedDealScreen()));
-                                              }),
-                                        )
-                                      : SizedBox.shrink();
-                            },
-                          ),
+                                                  .HOME_PAGE_PADDING),
+                                          child: FeaturedDealsView(),
+                                        ))
+                                    : SizedBox.shrink();
+                          },
+                        ),
 
-                          Consumer<FeaturedDealProvider>(
-                            builder: (context, featuredDeal, child) {
-                              return featuredDeal.featuredDealList == null &&
-                                      featuredDeal.featuredDealList.length > 0
-                                  ? Container(
-                                      height: 150, child: FeaturedDealsView())
-                                  : (featuredDeal.featuredDealList != null &&
-                                          featuredDeal.featuredDealList.length >
-                                              0)
-                                      ? Container(
-                                          height: featuredDeal
-                                                      .featuredDealList.length >
-                                                  4
-                                              ? 120 * 4.0
-                                              : 120 *
-                                                  (double.parse(featuredDeal
-                                                      .featuredDealList.length
-                                                      .toString())),
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                bottom: Dimensions
-                                                    .HOME_PAGE_PADDING),
-                                            child: FeaturedDealsView(),
-                                          ))
-                                      : SizedBox.shrink();
-                            },
-                          ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              bottom: Dimensions.HOME_PAGE_PADDING),
+                          child: RecommendedProductView(),
+                        ),
 
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                bottom: Dimensions.HOME_PAGE_PADDING),
-                            child: RecommendedProductView(),
-                          ),
+                        // Latest Products
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 7,
+                              vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                          child: TitleRow(
+                              title:
+                                  getTranslated('latest_products', context),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => AllProductScreen(
+                                            productType:
+                                                ProductType.LATEST_PRODUCT)));
+                              }),
+                        ),
+                        SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
+                        LatestProductView(
+                            scrollController: _scrollController),
+                        SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
 
-                          // Latest Products
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 7,
-                                vertical: Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                            child: TitleRow(
-                                title:
-                                    getTranslated('latest_products', context),
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (_) => AllProductScreen(
-                                              productType:
-                                                  ProductType.LATEST_PRODUCT)));
-                                }),
-                          ),
-                          SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                          LatestProductView(
-                              scrollController: _scrollController),
-                          SizedBox(height: Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                        //Home category
+                        HomeCategoryProductView(isHomePage: true),
+                        SizedBox(height: Dimensions.HOME_PAGE_PADDING),
 
-                          //Home category
-                          HomeCategoryProductView(isHomePage: true),
-                          SizedBox(height: Dimensions.HOME_PAGE_PADDING),
+                        //footer banner
+                        Consumer<BannerProvider>(
+                            builder: (context, footerBannerProvider, child) {
+                          return footerBannerProvider.footerBannerList !=
+                                      null &&
+                                  footerBannerProvider
+                                          .footerBannerList.length >
+                                      0
+                              ? Padding(
+                                  padding: const EdgeInsets.only(
+                                      bottom: Dimensions.HOME_PAGE_PADDING),
+                                  child: Column(
+                                    children: [
+                                      StaggeredGridView.countBuilder(
 
-                          //footer banner
-                          Consumer<BannerProvider>(
-                              builder: (context, footerBannerProvider, child) {
-                            return footerBannerProvider.footerBannerList !=
-                                        null &&
-                                    footerBannerProvider
-                                            .footerBannerList.length >
-                                        0
-                                ? Padding(
-                                    padding: const EdgeInsets.only(
-                                        bottom: Dimensions.HOME_PAGE_PADDING),
-                                    child: Column(
-                                      children: [
-                                        StaggeredGridView.countBuilder(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: Dimensions
-                                                  .PADDING_SIZE_SMALL),
-                                          physics: BouncingScrollPhysics(),
-                                          crossAxisCount: 2,
-                                          mainAxisSpacing: 10,
-                                          itemCount: footerBannerProvider
-                                              .footerBannerList.length,
-                                          shrinkWrap: true,
-                                          staggeredTileBuilder: (int index) =>
-                                              StaggeredTile.fit(2),
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            return FooterBannersView(
-                                              index: index,
-                                            );
-                                          },
-                                        ),
-                                      ],
-                                    ))
-                                : SizedBox();
-                          }),
-
-                          SizedBox(height: Dimensions.HOME_PAGE_PADDING),
-
-                          //Category filter
-                          Consumer<ProductProvider>(
-                              builder: (ctx, prodProvider, child) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal:
-                                      Dimensions.PADDING_SIZE_EXTRA_SMALL,
-                                  vertical:
-                                      Dimensions.PADDING_SIZE_EXTRA_SMALL),
-                              child: Row(children: [
-                                Expanded(
-                                    child: Text(
-                                        prodProvider.title == 'xyz'
-                                            ? getTranslated(
-                                                'new_arrival', context)
-                                            : prodProvider.title,
-                                        style: titleHeader)),
-                                prodProvider.latestProductList != null
-                                    ? PopupMenuButton(
-                                        itemBuilder: (context) {
-                                          return [
-                                            PopupMenuItem(
-                                                value: ProductType.NEW_ARRIVAL,
-                                                child: Text(getTranslated(
-                                                    'new_arrival', context)),
-                                                textStyle:
-                                                    robotoRegular.copyWith(
-                                                  color: Theme.of(context)
-                                                      .hintColor,
-                                                )),
-                                            PopupMenuItem(
-                                                value: ProductType.TOP_PRODUCT,
-                                                child: Text(getTranslated(
-                                                    'top_product', context)),
-                                                textStyle:
-                                                    robotoRegular.copyWith(
-                                                  color: Theme.of(context)
-                                                      .hintColor,
-                                                )),
-                                            PopupMenuItem(
-                                                value: ProductType.BEST_SELLING,
-                                                child: Text(getTranslated(
-                                                    'best_selling', context)),
-                                                textStyle:
-                                                    robotoRegular.copyWith(
-                                                  color: Theme.of(context)
-                                                      .hintColor,
-                                                )),
-                                            PopupMenuItem(
-                                                value: ProductType
-                                                    .DISCOUNTED_PRODUCT,
-                                                child: Text(getTranslated(
-                                                    'discounted_product',
-                                                    context)),
-                                                textStyle:
-                                                    robotoRegular.copyWith(
-                                                  color: Theme.of(context)
-                                                      .hintColor,
-                                                )),
-                                          ];
+                                        physics: BouncingScrollPhysics(),
+                                        crossAxisCount: 2,
+                                        mainAxisSpacing: 10,
+                                        itemCount: footerBannerProvider
+                                            .footerBannerList.length,
+                                        shrinkWrap: true,
+                                        staggeredTileBuilder: (int index) =>
+                                            StaggeredTile.fit(2),
+                                        itemBuilder: (BuildContext context,
+                                            int index) {
+                                          return FooterBannersView(
+                                            index: index,
+                                          );
                                         },
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                Dimensions.PADDING_SIZE_SMALL)),
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal:
-                                                  Dimensions.PADDING_SIZE_SMALL,
-                                              vertical: Dimensions
-                                                  .PADDING_SIZE_SMALL),
-                                          child: Image.asset(
-                                            Images.dropdown,
-                                            scale: 3,
-                                          ),
-                                        ),
-                                        onSelected: (value) {
-                                          if (value ==
-                                              ProductType.NEW_ARRIVAL) {
-                                            Provider.of<ProductProvider>(
-                                                    context,
-                                                    listen: false)
-                                                .changeTypeOfProduct(
-                                                    value, types[0]);
-                                          } else if (value ==
-                                              ProductType.TOP_PRODUCT) {
-                                            Provider.of<ProductProvider>(
-                                                    context,
-                                                    listen: false)
-                                                .changeTypeOfProduct(
-                                                    value, types[1]);
-                                          } else if (value ==
-                                              ProductType.BEST_SELLING) {
-                                            Provider.of<ProductProvider>(
-                                                    context,
-                                                    listen: false)
-                                                .changeTypeOfProduct(
-                                                    value, types[2]);
-                                          } else if (value ==
-                                              ProductType.DISCOUNTED_PRODUCT) {
-                                            Provider.of<ProductProvider>(
-                                                    context,
-                                                    listen: false)
-                                                .changeTypeOfProduct(
-                                                    value, types[3]);
-                                          }
+                                      ),
+                                    ],
+                                  ))
+                              : SizedBox();
+                        }),
 
-                                          ProductView(
-                                              isHomePage: false,
-                                              productType: value,
-                                              scrollController:
-                                                  _scrollController);
-                                          Provider.of<ProductProvider>(context,
+                        SizedBox(height: Dimensions.HOME_PAGE_PADDING),
+
+                        //Category filter
+                        Consumer<ProductProvider>(
+                            builder: (ctx, prodProvider, child) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal:
+                                    Dimensions.PADDING_SIZE_EXTRA_SMALL,
+                                vertical:
+                                    Dimensions.PADDING_SIZE_EXTRA_SMALL),
+                            child: Row(children: [
+                              Expanded(
+                                  child: Text(
+                                      prodProvider.title == 'xyz'
+                                          ? getTranslated(
+                                              'new_arrival', context)
+                                          : prodProvider.title,
+                                      style: titleHeader)),
+                              prodProvider.latestProductList != null
+                                  ? PopupMenuButton(
+                                      itemBuilder: (context) {
+                                        return [
+                                          PopupMenuItem(
+                                              value: ProductType.NEW_ARRIVAL,
+                                              child: Text(getTranslated(
+                                                  'new_arrival', context)),
+                                              textStyle:
+                                                  robotoRegular.copyWith(
+                                                color: Theme.of(context)
+                                                    .hintColor,
+                                              )),
+                                          PopupMenuItem(
+                                              value: ProductType.TOP_PRODUCT,
+                                              child: Text(getTranslated(
+                                                  'top_product', context)),
+                                              textStyle:
+                                                  robotoRegular.copyWith(
+                                                color: Theme.of(context)
+                                                    .hintColor,
+                                              )),
+                                          PopupMenuItem(
+                                              value: ProductType.BEST_SELLING,
+                                              child: Text(getTranslated(
+                                                  'best_selling', context)),
+                                              textStyle:
+                                                  robotoRegular.copyWith(
+                                                color: Theme.of(context)
+                                                    .hintColor,
+                                              )),
+                                          PopupMenuItem(
+                                              value: ProductType
+                                                  .DISCOUNTED_PRODUCT,
+                                              child: Text(getTranslated(
+                                                  'discounted_product',
+                                                  context)),
+                                              textStyle:
+                                                  robotoRegular.copyWith(
+                                                color: Theme.of(context)
+                                                    .hintColor,
+                                              )),
+                                        ];
+                                      },
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              Dimensions.PADDING_SIZE_SMALL)),
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal:
+                                                Dimensions.PADDING_SIZE_SMALL,
+                                            vertical: Dimensions
+                                                .PADDING_SIZE_SMALL),
+                                        child: Image.asset(
+                                          Images.dropdown,
+                                          scale: 3,
+                                        ),
+                                      ),
+                                      onSelected: (value) {
+                                        if (value ==
+                                            ProductType.NEW_ARRIVAL) {
+                                          Provider.of<ProductProvider>(
+                                                  context,
                                                   listen: false)
-                                              .getLatestProductList(1, context,
-                                                  reload: true);
-                                        })
-                                    : SizedBox(),
-                              ]),
-                            );
-                          }),
-                          ProductView(
-                              isHomePage: false,
-                              productType: ProductType.NEW_ARRIVAL,
-                              scrollController: _scrollController),
-                          SizedBox(height: Dimensions.HOME_PAGE_PADDING),
-                        ],
-                      ),
+                                              .changeTypeOfProduct(
+                                                  value, types[0]);
+                                        } else if (value ==
+                                            ProductType.TOP_PRODUCT) {
+                                          Provider.of<ProductProvider>(
+                                                  context,
+                                                  listen: false)
+                                              .changeTypeOfProduct(
+                                                  value, types[1]);
+                                        } else if (value ==
+                                            ProductType.BEST_SELLING) {
+                                          Provider.of<ProductProvider>(
+                                                  context,
+                                                  listen: false)
+                                              .changeTypeOfProduct(
+                                                  value, types[2]);
+                                        } else if (value ==
+                                            ProductType.DISCOUNTED_PRODUCT) {
+                                          Provider.of<ProductProvider>(
+                                                  context,
+                                                  listen: false)
+                                              .changeTypeOfProduct(
+                                                  value, types[3]);
+                                        }
+
+                                        ProductView(
+                                            isHomePage: false,
+                                            productType: value,
+                                            scrollController:
+                                                _scrollController);
+                                        Provider.of<ProductProvider>(context,
+                                                listen: false)
+                                            .getLatestProductList(1, context,
+                                                reload: true);
+                                      })
+                                  : SizedBox(),
+                            ]),
+                          );
+                        }),
+                        ProductView(
+                            isHomePage: false,
+                            productType: ProductType.NEW_ARRIVAL,
+                            scrollController: _scrollController),
+                        SizedBox(height: Dimensions.HOME_PAGE_PADDING),
+                      ],
                     ),
                   )
                 ],

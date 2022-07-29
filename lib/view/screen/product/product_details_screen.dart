@@ -118,8 +118,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                     color: Theme.of(context).cardColor
                   ),
                       child: PromiseScreen()),
-
-                  widget.product.addedBy == 'seller' ? SellerView(sellerId: widget.product.userId.toString()) : SizedBox.shrink(),
+                 //here dell commmend to a mult vindor 1 colu
+                 // widget.product.addedBy == 'seller' ? SellerView(sellerId: widget.product.userId.toString()) : SizedBox.shrink(),
                   //widget.product.addedBy == 'admin' ? SellerView(sellerId: '0') : SizedBox.shrink(),
 
 
