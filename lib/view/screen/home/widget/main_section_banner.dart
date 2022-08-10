@@ -70,7 +70,7 @@ class MainSectionBannersView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 2.0),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.width/4.1,
+                  height: MediaQuery.of(context).size.width/2.1,
                   decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(5))),
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(0)),
