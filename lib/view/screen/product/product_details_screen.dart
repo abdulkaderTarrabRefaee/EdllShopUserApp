@@ -67,16 +67,16 @@ class _ProductDetailsState extends State<ProductDetails> {
           appBar: AppBar(
             title: Row(children: [
               InkWell(
-                child: Icon(Icons.arrow_back_ios, color: Theme.of(context).cardColor, size: 20),
+                child: Icon(Icons.arrow_back_ios, color: Colors.black, size: 20),
                 onTap: () => Navigator.pop(context),
               ),
               SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
               Text(getTranslated('product_details', context),
-                  style: robotoRegular.copyWith(fontSize: 20, color: Theme.of(context).cardColor)),
+                  style: robotoRegular.copyWith(fontSize: 20, color: Colors.black)),
             ]),
             automaticallyImplyLeading: false,
             elevation: 0,
-            backgroundColor: Provider.of<ThemeProvider>(context).darkTheme ? Colors.black : null,
+            backgroundColor: Provider.of<ThemeProvider>(context).darkTheme ? Colors.black : Colors.white70,
           ),
 
           bottomNavigationBar: BottomCartView(product: widget.product),

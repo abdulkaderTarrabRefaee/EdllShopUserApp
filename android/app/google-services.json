@@ -7,6 +7,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:358329862330:android:674b4a1ac0a87f2bc6da83",
+        "android_client_info": {
+          "package_name": "com.matajiri.EdllSeller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358329862330-93a4295vhahs3hcfgema8agjr1alog73.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.matajiri.EdllSeller",
+            "certificate_hash": "25f14b9295c11c87d290d720868ca8bee7dc664f"
+          }
+        },
+        {
+          "client_id": "358329862330-7moam6tnelotkuqk4320094ro8f8he9s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD86KnwnC-d77DQNQ_qE5XweXK00A_EX3k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358329862330-7moam6tnelotkuqk4320094ro8f8he9s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:358329862330:android:333c55fa486b3bb0c6da83",
         "android_client_info": {
           "package_name": "com.matajiri.Edllshop"

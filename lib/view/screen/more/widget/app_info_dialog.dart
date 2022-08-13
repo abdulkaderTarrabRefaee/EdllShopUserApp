@@ -38,7 +38,7 @@ class AppInfoDialog extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(getTranslated('VERSION_NAME', context), style: titilliumRegular),
+                Text(getTranslated('VERSION_NAME', context), style: titilliumSemiBold),
                 Text(Provider.of<SplashProvider>(context, listen: false).packageInfo.buildNumber, style: titilliumSemiBold.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
               ],
             ),
@@ -46,9 +46,28 @@ class AppInfoDialog extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(getTranslated('RELEASE_DATE', context), style: titilliumRegular),
-                Text('01 Jan 2021', style: titilliumSemiBold.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
+                Text(getTranslated('RELEASE_DATE', context), style: titilliumSemiBold),
+                Text('01 Jan 2022', style: titilliumSemiBold.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT)),
               ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(getTranslated('Company_pro', context), style: titilliumSemiBold),
+                Text('matajiri-tr.com', style: titilliumSemiBold.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT)),
+              ],
+
+
+            ),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(getTranslated('pro_by', context), style: titilliumSemiBold),
+                  Text('ABDULKADER TARRAB REFAEE', style: titilliumSemiBold.copyWith(fontSize: Dimensions.FONT_SIZE_DEFAULT)),
+                ],
+
+
+
             ),
           ],
         ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:edll_user_app/helper/product_type.dart';
 import 'package:edll_user_app/localization/language_constrants.dart';
 import 'package:edll_user_app/provider/auth_provider.dart';

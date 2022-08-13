@@ -1,3 +1,4 @@
+import 'package:edll_user_app/view/screen/more/widget/app_info_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:edll_user_app/provider/cart_provider.dart';
 import 'package:edll_user_app/provider/localization_provider.dart';
@@ -175,6 +176,7 @@ class _MoreScreenState extends State<MoreScreen> {
                     leading: Image.asset(Images.logo_image, width: 25, height: 25, fit: BoxFit.fill, color: ColorResources.getPrimary(context)),
                     title: Text(getTranslated('app_info', context), style: titilliumRegular.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE)),
                     trailing: Text(version??''),
+                    onTap:  () => showAnimatedDialog(context, AppInfoDialog(), isFlip: true),
                   ),
 
                   isGuestMode

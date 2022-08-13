@@ -20,8 +20,8 @@
   "woman_fashions": "أزياء المرأة",
   "latest_products": "أحدث المنتجات",
   "product_details": "تفاصيل المنتج",
-  "coupon_voucher": "القسيمة والقسيمة",
-  "grab_now": "انتزاع الآن",
+  "coupon_voucher": "القسيمة ",
+  "grab_now": "خذها الآن",
   "seller": "تاجر",
   "specification": "تخصيص",
   "product_variants": "متغيرات المنتج",
@@ -167,7 +167,7 @@
   "checkout": "الدفع",
   "add_your_address": "أضف عنوانك",
   "payment_method": "طريقة الدفع او السداد",
-  "proceed": "تقدم",
+  "proceed": "تقدم الآن",
   "add_new_address": "أضف عنوان جديد",
   "no_products_available": "لا توجد منتجات متاحة",
   "support_ticket": "بطاقة الدعم",
@@ -225,7 +225,7 @@
   "digital_payment": "الدفع الرقمي",
   "order_placed": "تم الطلب",
   "your_order_placed": "تم تقديم الطلب بنجاح",
-  "address": "تبوك",
+  "address": "العناوين",
   "invalid_coupon_or": "قسيمة غير صالحة أو فشل في الحصول على الخصم",
   "solved": "تم حلها",
   "out_of_stock": "إنتهى من المخزن",
@@ -356,5 +356,7 @@
   "guest": "ضيف",
   "searched_item": "العناصر التي تم البحث عنها",
   "item_found": "تم العثور على العناصر",
-  "address_type": "نوع العنوان"
+  "address_type": "نوع العنوان",
+  "Company_pro": "الشركة المنتجة للتطبيق",
+  "pro_by": "اسم المبرمج"
 }

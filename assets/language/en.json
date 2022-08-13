@@ -358,5 +358,7 @@
   "guest": "Guest",
   "searched_item": "Searched Items",
   "item_found": "items found",
-  "address_type": "Address Type"
+  "address_type": "Address Type",
+  "Company_pro": "Producing company",
+  "pro_by": "programmer name"
 }
