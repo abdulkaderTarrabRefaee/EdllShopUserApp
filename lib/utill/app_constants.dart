@@ -2,7 +2,7 @@ import 'package:edll_user_app/data/model/response/language_model.dart';
 
 class AppConstants {
   static const String APP_NAME = 'EDLL SHOP';
-  static const String BASE_URL = 'https://edllshop.com';
+  static const String BASE_URL = 'https://aadllapp.com';
   static const String USER_ID = 'userId';
   static const String NAME = 'name';
   static const String CATEGORIES_URI = '/api/v1/categories';
