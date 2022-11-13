@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:edll_user_app/data/model/response/social_login_model.dart';
 import 'package:edll_user_app/localization/language_constrants.dart';
@@ -8,10 +10,16 @@ import 'package:edll_user_app/provider/splash_provider.dart';
 import 'package:edll_user_app/provider/theme_provider.dart';
 import 'package:edll_user_app/utill/images.dart';
 import 'package:edll_user_app/view/screen/dashboard/dashboard_screen.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
-
+import 'package:the_apple_sign_in/the_apple_sign_in.dart';
 import 'mobile_verify_screen.dart';
 import 'otp_verification_screen.dart';
+import 'dart:io';
+
+
+
+import 'package:http/http.dart' as http;
 
 class SocialLoginWidget extends StatefulWidget {
   @override
@@ -51,14 +59,27 @@ class _SocialLoginWidgetState extends State<SocialLoginWidget> {
     return Column(
       children: [
         Provider.of<SplashProvider>(context,listen: false).configModel.socialLogin[0].status?
-       Provider.of<SplashProvider>(context,listen: false).configModel.socialLogin[1].status?
+        Provider.of<SplashProvider>(context,listen: false).configModel.socialLogin[1].status?
         Center(child: Text(getTranslated('social_login', context)))
-        :Center(child: Text(getTranslated('social_login', context))):SizedBox(),
+            :Center(child: Text(getTranslated('social_login', context))):SizedBox(),
         Container(color: Provider.of<ThemeProvider>(context).darkTheme ? Theme.of(context).canvasColor : Colors.transparent,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-             Provider.of<SplashProvider>(context,listen: false).configModel.socialLogin[0].status?
+
+
+              if (Platform.isIOS)
+                Container(
+                  height: 50,
+                  width: 250,
+                  child: AppleSignInButton(
+                    onPressed: logIn,
+                  ),
+                )
+
+              else
+                SizedBox(),
+              Provider.of<SplashProvider>(context,listen: false).configModel.socialLogin[0].status?
 
               InkWell(
                 onTap: () async{
@@ -158,10 +179,54 @@ class _SocialLoginWidgetState extends State<SocialLoginWidget> {
                 ),
               ):SizedBox(),
 
+
             ],
           ),
         ),
       ],
     );
+  }
+}
+void logIn() async {
+  final AuthorizationResult result = await TheAppleSignIn.performRequests([
+    AppleIdRequest(requestedScopes: [Scope.email, Scope.fullName])
+  ]);
+
+  switch (result.status) {
+    case AuthorizationStatus.authorized:
+
+    // Store user ID
+      await FlutterSecureStorage()
+          .write(key: "userId", value: result.credential.user);
+      print('User complete');
+      print(result.credential.email);
+      print('User complete');
+      print(result.credential.authorizationCode);
+      print('User authorizationCode');
+      print(result.credential.identityToken);
+      print('User identityToken');
+      print(result.credential.realUserStatus);
+      print('User realUserStatus');
+      print(result.credential.authorizedScopes);
+      print('User authorizedScopes');
+      print(result.credential.user);
+      print('User user');
+      print(result.credential.fullName.givenName);
+      print('User givenName');
+      print(result.credential.state);
+      print('User state');
+
+
+
+      break;
+
+    case AuthorizationStatus.error:
+      print("Sign in failed: ${result.error.localizedDescription}");
+
+      break;
+
+    case AuthorizationStatus.cancelled:
+      print('User cancelled');
+      break;
   }
 }

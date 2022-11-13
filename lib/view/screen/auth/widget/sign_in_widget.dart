@@ -18,7 +18,6 @@ import 'package:edll_user_app/view/screen/auth/widget/mobile_verify_screen.dart'
 import 'package:edll_user_app/view/screen/auth/widget/social_login_widget.dart';
 import 'package:edll_user_app/view/screen/dashboard/dashboard_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import 'otp_verification_screen.dart';
 
