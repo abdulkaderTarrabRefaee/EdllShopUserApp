@@ -360,5 +360,6 @@
   "item_found": "items found",
   "address_type": "Address Type",
   "Company_pro": "Producing company",
-  "pro_by": "programmer name"
+  "pro_by": "programmer name",
+  "want_to_delete_your_account": "Do you want to permanently delete your account?"
 }

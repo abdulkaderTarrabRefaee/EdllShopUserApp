@@ -18,14 +18,10 @@ import 'package:edll_user_app/utill/custom_themes.dart';
 import 'package:edll_user_app/utill/dimensions.dart';
 import 'package:edll_user_app/utill/images.dart';
 import 'package:edll_user_app/view/basewidget/title_row.dart';
-import 'package:edll_user_app/view/screen/brand/all_brand_screen.dart';
 import 'package:edll_user_app/view/screen/cart/cart_screen.dart';
-import 'package:edll_user_app/view/screen/category/all_category_screen.dart';
 import 'package:edll_user_app/view/screen/featureddeal/featured_deal_screen.dart';
 import 'package:edll_user_app/view/screen/home/widget/announcement.dart';
 import 'package:edll_user_app/view/screen/home/widget/banners_view.dart';
-import 'package:edll_user_app/view/screen/home/widget/brand_view.dart';
-import 'package:edll_user_app/view/screen/home/widget/category_view.dart';
 import 'package:edll_user_app/view/screen/home/widget/featured_deal_view.dart';
 import 'package:edll_user_app/view/screen/home/widget/featured_product_view.dart';
 import 'package:edll_user_app/view/screen/home/widget/flash_deals_view.dart';
@@ -40,7 +36,6 @@ import 'package:edll_user_app/view/screen/product/view_all_product_screen.dart';
 import 'package:edll_user_app/view/screen/search/search_screen.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
-
 import '../../../provider/localization_provider.dart';
 
 class HomePage extends StatefulWidget {

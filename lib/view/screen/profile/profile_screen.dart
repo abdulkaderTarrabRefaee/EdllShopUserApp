@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:edll_user_app/view/screen/profile/widget/delete_account_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:edll_user_app/data/model/response/user_info_model.dart';
@@ -17,6 +18,9 @@ import 'package:edll_user_app/view/basewidget/textfield/custom_password_textfiel
 import 'package:edll_user_app/view/basewidget/textfield/custom_textfield.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+
+import '../../basewidget/animated_custom_dialog.dart';
+
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -356,6 +360,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                           focusNode: _confirmPasswordFocus,
                                           textInputAction: TextInputAction.done,
                                         ),
+                                        SizedBox(height: Dimensions.MARGIN_SIZE_SMALL),
+                                        TextButton(onPressed: () => showAnimatedDialog(context, DeleteAccountDialog(), isFlip: true),child:
+                                        Text("Delete my account",style: TextStyle(color: Color.fromARGB(60, 77, 0, 0)),)),
                                       ],
                                     ),
                                   ),
