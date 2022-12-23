@@ -37,6 +37,14 @@
             {
               "client_id": "358329862330-7moam6tnelotkuqk4320094ro8f8he9s.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "358329862330-0hjoge72uq568ggbumg8r50ovivtd95q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.matajiri.EdllApp",
+                "app_store_id": "6443835396"
+              }
             }
           ]
         }
@@ -51,11 +59,43 @@
       },
       "oauth_client": [
         {
+          "client_id": "358329862330-21gkjt799352r8hd7l9aclqnv10es9ns.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.matajiri.Edllshop",
+            "certificate_hash": "2b5e04dee4e6979570dffe4d952450b27d6e35d3"
+          }
+        },
+        {
           "client_id": "358329862330-cu124cv7k0h4ngsjto4dtg1d1vdud31d.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.matajiri.Edllshop",
             "certificate_hash": "25f14b9295c11c87d290d720868ca8bee7dc664f"
+          }
+        },
+        {
+          "client_id": "358329862330-hbsuvs0gacjtohg6qrr6i432u599514i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.matajiri.Edllshop",
+            "certificate_hash": "00762f24a00b4e61d6c93ef0070b03235404c255"
+          }
+        },
+        {
+          "client_id": "358329862330-ligiak7v5vr4aqct201ldavck45slk7v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.matajiri.Edllshop",
+            "certificate_hash": "cfca3f579baf4a81570a98c5604501f34df2294b"
+          }
+        },
+        {
+          "client_id": "358329862330-s9ai1snnq66gfan3e2qfdo8b7o02r0kh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.matajiri.Edllshop",
+            "certificate_hash": "81712bb0472fbbfcaedc5d3884af4948bf4bc500"
           }
         },
         {
@@ -74,6 +114,14 @@
             {
               "client_id": "358329862330-7moam6tnelotkuqk4320094ro8f8he9s.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "358329862330-0hjoge72uq568ggbumg8r50ovivtd95q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.matajiri.EdllApp",
+                "app_store_id": "6443835396"
+              }
             }
           ]
         }
